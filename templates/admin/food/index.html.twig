@@ -1,0 +1,70 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Restaurants{% endblock %}
+
+{% block body %}
+    <script language="JavaScript" type="text/javascript">
+        function openWin( windowURL, windowName, windowFeatures) {
+           window.open( windowURL, windowName, windowFeatures);
+        }
+    </script>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Title</h3>
+        </div>
+        <div class="card-body">
+            <h1>Restaurant List</h1>
+
+            <table class="table table-borderless table-data3">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Category</th>
+                        <th>Restaurant</th>
+                        <th>User</th>
+                        <th>Image</th>
+                        <th>I.Gallery</th>
+                        <th>Foods</th>
+                        <th>Status</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for food in foods %}
+                    <tr>
+                        <td>{{ food.id }}</td>
+                        <td>{{ food.catname }}</td>
+                        <td>{{ food.title }}</td>
+                        <td nowrap><a href="{{ path('admin_user_show', {'id': food.userid}) }}">
+                            {{ food.name }} {{ food.surname }}
+                            </a></td>
+                        <td><img style="height: 30px;" src="{{ asset ('uploads/images/')~ food.image }}" height="40"></td>
+                        <td>
+                            <a href="javascript:window.open('{{ path('admin_image_new',{'id': food.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
+                                <img src="{{ asset('assets/admin/images/gallery.png') }}" height="40" title="Foods"></a>
+                        </td>
+                        <td>
+                            <a href="javascript:window.open('{{ path('admin_orders_new',{'id': food.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
+                                <img style="height: 35px;" src="{{ asset('assets/admin/images/order.png') }}" height="30" title="Order"></a>
+                        </td>
+                        <td>{{ food.status }}</td>
+                        <td>
+                            <a href="{{ path('admin_food_edit', {'id': food.id}) }}" class="btn btn-info btn-sm">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="10">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('admin_food_new') }}" class="btn btn-primary">Create new</a>
+
+        </div>
+            <!-- /.card-footer-->
+    </div>
+            <!-- /.card -->
+
+{% endblock %}

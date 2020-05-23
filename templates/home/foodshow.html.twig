@@ -1,0 +1,140 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{food.title}}{% endblock %}
+{% block keywords %}{{food.keywords}}{% endblock %}
+{% block description %}{{food.description}}{% endblock %}
+
+{% block body %}
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>{{food.title}}</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="">Food</a></li>
+                    <li class="breadcrumb-item active">{{food.title}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="shop-detail-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-5 col-md-6">
+                    <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item active"> <img style="height: 300px" class="d-block w-100" src="{{ asset ('uploads/images/') ~ food.image }}" alt="First slide"> </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
+                            <i class="fa fa-angle-left" aria-hidden="true"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-6">
+                    <div class="single-product-details">
+                        <h2>{{ food.title }}</h2>
+                        <p>{{ food.details|raw}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<div class="container">
+    {% for orders in orderss %}
+    <div class="card mb-3" style="max-width: 100%;" >
+        <div class="row no-gutters" >
+            <div class="col-md-4">
+                <img style="height: 140px" class="d-block w-100" src="{{ asset ('uploads/images/') ~ orders.image }}" alt="First slide">
+            </div>
+            <div class="col-md-4">
+                <div class="card-body">
+                    <h3 class="card-title">{{ orders.title }}</h3>
+                    <h4><b>Price</b></h4>
+                    <p>{{ orders.price }}₺</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-body">
+                    <form name="shopcard" action="{{ path('shopcard_new') }}" method="post">
+                        <h4><b>Quantity</b></h4>
+                        <input min="1" type="number"  name="shopcard[quantity]"  required data-error="Please enter Quantity">
+                        <input type="hidden" name=shopcard[ordersid]" value="{{ orders.id }}">
+                        <input type="hidden" name="token" value="{{ csrf_token('add-item')}}">
+                        <input type="submit" value="Add Cart" class="btn btn-success btn-group-lg">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+    <div class="container">
+        <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+                <h2>Comments</h2>
+            </div>
+            <div class="card-body">
+                <div class="media mb-3">
+                    <div class="media-body">
+                        {% for rs in comment %}
+                            <h4>{{ rs.subject }} [Rate:{{ rs.rate }}]</h4>
+                            <p>
+                                {{ rs.comment }}
+                            </p>
+                            <hr>
+                        {% endfor %}
+                        <h1>Write Your Comment</h1>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            {{ include('messages.html.twig')  }}
+                            <form  name="comment" action="{{ path('user_new_comment', {'id': food.id}) }}" method="post" role="form" >
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <select class="form-control" id="comment_rate" name="comment[rate]">
+                                                <option>Rate</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="comment_subject" name="comment[subject]" placeholder="Subject" required data-error="Please enter your Subject">
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="comment_comment" name="comment[comment]" placeholder="Your Comment" rows="4" data-error="Write your message" required></textarea>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="submit-button text-center">
+                                            <input type="hidden"  name="token" value="{{ csrf_token('comment') }}" />
+                                            <button class="btn btn-success" type="submit">Send Comment</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        {% else %}
+                            <li><a href="/loginuser"><i><h4>If you want to add comment please login</h4></i></a></li>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

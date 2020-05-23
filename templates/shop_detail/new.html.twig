@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ShopDetail{% endblock %}
+
+{% block body %}
+    <h1>Create new ShopDetail</h1>
+
+    {{ include('shop_detail/_form.html.twig') }}
+
+    <a href="{{ path('shop_detail_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}OrderDetails index{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <div style="overflow: auto; width: 100%;" class="main-content">
+
+            <div class="container">
+                <div class="table-responsive-data2">
+                    <h1>Orders</h1>
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>UserName</th>
+                            <th>Restaurant</th>
+                            <th>FoodName</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Phone</th>
+                            <th>Amount</th>
+                            <th>Total</th>
+                            <th>Adress</th>
+                            <th>Messages</th>
+                            <th>Status</th>
+                            <th>Created_at</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for order_detail in order_details %}
+                            <tr>
+                                <td><a href="{{ path('admin_user_show', {'id': order_detail.userid}) }}">{{ order_detail.uname }}</a></td>
+                                <td>{{ order_detail.fname }}</td>
+                                <td>{{ order_detail.oname }}</td>
+                                <td>{{ order_detail.name }}</td>
+                                <td>{{ order_detail.surname }}</td>
+                                <td>{{ order_detail.phone }}</td>
+                                <td>{{ order_detail.amount }}</td>
+                                <td>{{ order_detail.total }}</td>
+                                <td>{{ order_detail.note }}</td>
+                                <td>{{ order_detail.messages }}</td>
+                                <td>{{ order_detail.status }}</td>
+                                <td>{{ order_detail.created_at ? order_detail.created_at|date('d-m-y') : '' }}</td>
+                                <td>
+                                    <a class="btn btn-info" href="{{ path('admin_order_details_edit', {'id': order_detail.id}) }}">edit</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="17">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

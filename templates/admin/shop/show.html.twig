@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Order Details</h1>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <th>Amount</th>
+            <td>{{ shop.amount }}₺</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ shop.name }} {{ shop.surname }}</td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td>{{ shop.adress }}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>{{ shop.phone }}</td>
+        </tr>
+        <tr>
+            <th>PaymentType</th>
+            <td>{{ shop.paymentType }}</td>
+        </tr>
+        <tr>
+            <th>Order Note</th>
+            <td>{{ shop.note }}</td>
+        </tr>
+        <form action="{{ path('admin_shop_update', {'id':shop.id})}}" method="post">
+            <tr>
+                <th>Status</th>
+                <td><select name="status">
+                        <option>{{ shop.status }}</option>
+                        <option>Preparing</option>
+                        <option>InRoad</option>
+                        <option>Completed</option>
+                        <option>Canceled</option>
+                    </select>
+                    <input class="btn btn-sm btn-success" type="submit" value="Updated">
+                </td>
+            </tr>
+        </form>
+        <tr>
+            <th>Order Time</th>
+            <td>{{ shop.createdAt ? shop.createdAt|date('d-m-Y') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{ shop.status }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    </table>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Restaurant</th>
+            <th>Food Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for shopdetail in shopdetail %}
+            <tr>
+                <td>{{ shopdetail.id }}</td>
+                <td>{{ shopdetail.restauran }}</td>
+                <td>{{ shopdetail.name }}</td>
+                <td>{{ shopdetail.price }}₺</td>
+                <td>{{ shopdetail.quantity }}</td>
+                <td>{{ shopdetail.amount }}₺</td>
+                <td>{{ shopdetail.status }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

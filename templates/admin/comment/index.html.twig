@@ -1,0 +1,57 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Comment index{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Messages</h3>
+        </div>
+        <div class="card-body">
+
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Subject</th>
+                    <th>Comment</th>
+                    <th>Status</th>
+                    <th>Ip</th>
+                    <th>User</th>
+                    <th>Restaurant</th>
+                    <th>Created_at</th>
+                    <th>Rate</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for comment in comments %}
+                    <tr>
+                        <td>{{ comment.id }}</td>
+                        <td>{{ comment.subject }}</td>
+                        <td>{{ comment.comment }}</td>
+                        <td>{{ comment.status }}</td>
+                        <td>{{ comment.ip }}</td>
+                        <td>{{ comment.name }} {{ comment.surname }}</td>
+                        <td>{{ comment.title }}</td>
+                        <td>{{ comment.created_at ? comment.created_at|date('d-m-y') : ''}}</td>
+                        <td>{{ comment.rate }}</td>
+                        <td>
+                            <a href="{{ path('admin_comment_show', {'id': comment.id}) }}" class="btn btn-info ">show</a>
+                        </td>
+                        <td>
+                            <a href="{{ path('admin_comment_edit', {'id': comment.id}) }}" class="btn btn-info">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="10">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}

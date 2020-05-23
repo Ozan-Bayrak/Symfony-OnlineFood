@@ -1,0 +1,57 @@
+{{ include('messages.html.twig')  }}
+<form name="shop" action="{{ path('shop_new') }}" method="post" role="form">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input value="Total Pay: {{ total }}₺" type="text" name="shop[amount]" class="form-control"   readonly>
+                <div class="help-block with-errors"></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input value="{{ app.user.name }}" type="text"  class="form-control" name="shop[name]"  placeholder="Your Name" required data-error="Please enter your name">
+                <div class="help-block with-errors"></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input value="{{ app.user.surname }}" type="text"  class="form-control" name="shop[surname]"  placeholder="Your Surname" required data-error="Please enter your surname">
+                <div class="help-block with-errors"></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input value="{{ app.user.adress }}" type="text"  placeholder="Your Address" name="shop[adress]"  class="form-control"  required data-error="Please enter your address">
+                <div class="help-block with-errors"></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input value="{{ app.user.phone }}" type="text" placeholder="Your Phone"  name="shop[phone]" class="form-control"  required data-error="Please enter your phone">
+                <div class="help-block with-errors"></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input  type="text" placeholder="Your Order Note"  name="shop[note]" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <select  class="form-control" name="shop[payment_type]">
+                    <option required data-error="Please select your payment type">Please Select Your Payment Type</option>
+                    <option >Kapıda Nakit Ödeme</option>
+                    <option >Kapıda Kredi Kartı İle Ödeme</option>
+                    <div class="help-block with-errors"></div>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="submit-button text-center">
+                <input type="hidden" name="shop[amount]" value="{{ shop.amount }}">
+                <input type="hidden"  name="token" value="{{ csrf_token('form-shop') }}" />
+                <button class="btn btn-success" type="submit">Buy</button>
+            </div>
+        </div>
+    </div>
+</form>

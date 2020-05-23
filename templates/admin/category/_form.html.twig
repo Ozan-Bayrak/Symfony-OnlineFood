@@ -1,0 +1,61 @@
+
+<div class="card">
+    <div class="card-header">Category</div>
+    <div class="card-body">
+        <div class="card-title">
+            <h3 class="text-center title-2">Category</h3>
+        </div>
+        <hr>
+        <form name="category" action="" method="post" novalidate="novalidate">
+            <div class="form-group">
+                <label for="selectLg" class=" form-control-label">Parent</label>
+                <select id="category_parentid" name="category[parentid]" class="form-control">
+                    <option value="0">Main Category</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat.id }}" {{ cat.id==category.parentid ? 'Selected':'' }}>{{ cat.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group has-success">
+                <label for="cc-name" class="control-label mb-1">Category Name</label>
+                <input type="text" id="category_title" name="category[title]" value="{{ category.title }}" maxlength="255" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group has-success">
+                <label for="cc-name" class="control-label mb-1">Keywords</label>
+                <input type="text" id="category_keywords" name="category[keywords]" value="{{ category.keywords }}" maxlength="255" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label for="cc-number" class="control-label mb-1">Description</label>
+                <input type="text" id="category_description" name="category[description]" value="{{ category.description }}"  class="form-control cc-number identified visa" value="" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
+                <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+            </div>
+            <div class="row">
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="file-input" class=" form-control-label">İmage</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="file"  id="category_image" name="category[image]" class="form-control-file">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="selectSm" class=" form-control-label">Status</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select id="category_status" name="category[status]" class="form-control-sm form-control">
+                            <option>{{ category.status}}</option>
+                            <option>True</option>
+                            <option>False</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-lg btn-info btn-block">{{ button_label|default('Save') }}</button>
+            </div>
+        </form>
+    </div>
+</div>

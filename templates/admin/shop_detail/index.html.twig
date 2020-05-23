@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShopDetail index{% endblock %}
+
+{% block body %}
+    <h1>ShopDetail index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Food Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for shop_detail in shop_details %}
+            <tr>
+                <td>{{ shop_detail.id }}</td>
+                <td>{{ shop_detail.name }}</td>
+                <td>{{ shop_detail.price }}</td>
+                <td>{{ shop_detail.quantity }}</td>
+                <td>{{ shop_detail.amount }}</td>
+                <td>{{ shop_detail.status }}</td>
+
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('shop_detail_new') }}">Create new</a>
+{% endblock %}

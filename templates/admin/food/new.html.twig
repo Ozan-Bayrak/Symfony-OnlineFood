@@ -1,0 +1,19 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}New Restaurant{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Title</h3>
+        </div>
+        <div class="card-body">
+            <h1>Create new Restaurant</h1>
+
+            {{ include('admin/food/_form.html.twig') }}
+
+            <a href="{{ path('admin_food_index') }}" class="btn btn-secondary btn-block">back to list</a>
+        </div>
+        <!-- /.card-footer-->
+    </div>
+{% endblock %}

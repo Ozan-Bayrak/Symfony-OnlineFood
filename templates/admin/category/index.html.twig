@@ -1,0 +1,63 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Category Home Page{% endblock %}
+
+{% block body %}
+
+        <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Title</h3>
+                        </div>
+                    <div class="card-body">
+                        <h1>Category List</h1>
+
+                        <table class="table table-borderless table-data3">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Parentid</th>
+                                <th>Title</th>
+                                <th>Keywords</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for category in categories %}
+                                <tr>
+                                    <td>{{ category.id }}</td>
+                                    <td>{{ category.parentid }}</td>
+                                    <td>{{ category.title }}</td>
+                                    <td>{{ category.keywords }}</td>
+                                    <td>{{ category.description }}</td>
+                                    <td>{{ category.status }}</td>
+                                    <td>
+                                        <a href="{{ path('admin_category_show', {'id': category.id}) }}" class="btn btn-info btn-sm">show</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('admin_category_edit', {'id': category.id}) }}" class="btn btn-info btn-sm">edit</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="10">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <a href="{{ path('admin_category_new') }}" class="btn btn-primary">Create new</a>
+                    </div>
+                    <!-- /.card-footer-->
+                </div>
+            <!-- /.card -->
+
+            </section>
+    <!-- /.content -->
+    </div>
+{% endblock %}

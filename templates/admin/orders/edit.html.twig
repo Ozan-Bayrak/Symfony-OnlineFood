@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Order{% endblock %}
+
+{% block body %}
+    <h1>Edit Order</h1>
+
+    {{ include('admin/orders/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShopDetail{% endblock %}
+
+{% block body %}
+    <h1>ShopDetail</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ shop_detail.id }}</td>
+            </tr>
+            <tr>
+                <th>Shopid</th>
+                <td>{{ shop_detail.shopid }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ shop_detail.userid }}</td>
+            </tr>
+            <tr>
+                <th>Ordersid</th>
+                <td>{{ shop_detail.ordersid }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ shop_detail.price }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ shop_detail.quantity }}</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>{{ shop_detail.amount }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ shop_detail.note }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ shop_detail.createdAt ? shop_detail.createdAt|date('Y-m-d ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ shop_detail.updatedAt ? shop_detail.updatedAt|date('Y-m-d ') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('shop_detail_index') }}">back to list</a>
+
+    <a href="{{ path('shop_detail_edit', {'id': shop_detail.id}) }}">edit</a>
+
+    {{ include('shop_detail/_delete_form.html.twig') }}
+{% endblock %}

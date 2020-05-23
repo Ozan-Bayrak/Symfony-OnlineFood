@@ -1,0 +1,49 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Setting index{% endblock %}
+
+{% block body %}
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <h1>Settings</h1>
+
+                <table class="table table-borderless table-data3">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Company</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for setting in settings %}
+                        <tr>
+                            <td>{{ setting.id }}</td>
+                            <td>{{ setting.title }}</td>
+                            <td>{{ setting.company }}</td>
+                            <td>{{ setting.email }}</td>
+                            <td>{{ setting.status }}</td>
+                            <td>
+                                <a class="btn btn-info" href="{{ path('setting_show', {'id': setting.id}) }}">show</a>
+                                <a class="btn btn-info" href="{{ path('setting_edit', {'id': setting.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="21">
+                                <a class="btn btn-secondary" href="{{ path('setting_new') }}">Create Settings</a>
+                                no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

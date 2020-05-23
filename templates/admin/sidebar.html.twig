@@ -1,0 +1,59 @@
+<aside class="menu-sidebar d-none d-lg-block">
+    <div class="logo">
+        <a href="/admin">
+            <img src="{{ asset('assets') }}/admin/images/icon/logo.png" alt="Cool Admin" />
+        </a>
+    </div>
+    <div class="menu-sidebar__content js-scrollbar1">
+        <nav class="navbar-sidebar">
+            <ul class="list-unstyled navbar__list">
+                <li class="active has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-shopping-cart"></i>Orders</a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a href="{{path('admin_shop_index',{'slug':'New'})}}">New</a>
+                        </li>
+                        <li>
+                            <a href="{{path('admin_shop_index',{'slug':'Preparing'})}}">Preparing</a>
+                        </li>
+                        <li>
+                            <a href="{{path('admin_shop_index',{'slug':'InRoad'})}}">InRoad</a>
+                        </li>
+                        <li>
+                            <a href="{{path('admin_shop_index',{'slug':'Completed'})}}">Completed</a>
+                        </li>
+                        <li>
+                            <a href="{{path('admin_shop_index',{'slug':'Canceled'})}}">Canceled</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/food">
+                        <i class="fas fa-archive"></i>Restaurants</a>
+                </li>
+                <li>
+                    <a href="/admin/category">
+                        <i class="fas fa-bookmark"></i>Category</a>
+                </li>
+                <li>
+                    <a href="/admin/user">
+                        <i class="fas fa-users"></i>Users</a>
+                </li>
+                <li>
+                    <a href="/admin/messages">
+                        <i class="fas fa-envelope"></i>User Messages</a>
+                </li>
+                <li>
+                    <a href="/admin/comment">
+                        <i class="fas fa-comments"></i>User Comments</a>
+                </li>
+                <li>
+                    <a href="/admin/setting">
+                        <i class="fas fa-gear"></i>Setting</a>
+                </li>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

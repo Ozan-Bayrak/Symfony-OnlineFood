@@ -1,0 +1,17 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Edit Setting{% endblock %}
+
+{% block body %}
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <h1>Edit Setting</h1>
+
+                {{ include('admin/setting/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

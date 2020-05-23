@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="au theme template">
+        <meta name="author" content="Hau Nguyen">
+        <meta name="keywords" content="au theme template">
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block head %}{% include('admin/head.html.twig') %}{% endblock %}
+    </head>
+    <body>
+        <div class="page-wrapper">
+            <div class="page-container">
+
+                {% block header %}{% include('admin/header.html.twig') %}{% endblock %}
+                {% block sidebar %}{% include('admin/sidebar.html.twig') %}{% endblock %}
+                {% block body %}{% endblock %}
+                {% block footer %}{% include('admin/footer.html.twig') %}{% endblock %}
+                {% block javascripts %}{% include('admin/javascripts.html.twig') %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

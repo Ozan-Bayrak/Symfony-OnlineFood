@@ -1,0 +1,73 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }}{% endblock %}
+
+{% block body %}
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>{{ app.user.name }}</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/user">User</a></li>
+                        <li class="breadcrumb-item active">User Orders</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="shop-box-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                    <div class="right-product-box">
+                        <h1>User Orders</h1>
+
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>Restaurant</th>
+                                <th>Food</th>
+                                <th>Name</th>
+                                <th>Surname</th>
+                                <th>Phone</th>
+                                <th>Amount</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Created_at</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for order_detail in orders %}
+                                <tr>
+                                    <td>{{ order_detail.fname }}</td>
+                                    <td>{{ order_detail.oname }}</td>
+                                    <td>{{ order_detail.name }}</td>
+                                    <td>{{ order_detail.surname }}</td>
+                                    <td>{{ order_detail.phone }}</td>
+                                    <td>{{ order_detail.amount }}</td>
+                                    <td>{{ order_detail.total }}</td>
+                                    <td>{{ order_detail.status }}</td>
+                                    <td>{{ order_detail.created_at? order_detail.created_at|date('d-m-y') : ''}}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="17">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+                {{ include('user/usermenu.html.twig') }}
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+{% endblock %}

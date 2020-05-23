@@ -1,0 +1,49 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}{{ app.user.name }}{% endblock %}
+
+{% block body %}
+    <script language="JavaScript" type="text/javascript">
+        function openWin( windowURL, windowName, windowFeatures) {
+            window.open( windowURL, windowName, windowFeatures);
+        }
+    </script>
+    <div class="card">
+        <div style="overflow: auto; width: 100%;" class="main-content">
+            <div class="container">
+                <div class="table-responsive-data2">
+                    <h1>Orders</h1>
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>UserName</th>
+                            <th>Total</th>
+                            <th>CustomerNote</th>
+                            <th>Status</th>
+                            <th>Details</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for shop in shop %}
+                            <tr>
+                                <td>{{ shop.name }} {{ shop.surname }}</td>
+                                <td>{{ shop.amount }}₺</td>
+                                <td>{{ shop.note }}</td>
+                                <td>{{ shop.status }}</td>
+                                <td>
+                                    <a href="javascript:window.open('{{ path('admin_shop_show', {'id': shop.id}) }} }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
+                                       <button class="btn btn-info btn-sm">Show</button></a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="10">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
